@@ -21,21 +21,21 @@
 
 declare(strict_types=1);
 
-namespace pjz9n\itemtimer;
+namespace pjz9n\itemtimer\config;
 
-use pjz9n\itemtimer\config\Config;
-use pocketmine\plugin\PluginBase;
-use Webmozart\PathUtil\Path;
+use pocketmine\utils\Config as PMConfig;
 
-class Main extends PluginBase
+class Config
 {
-    protected function onEnable(): void
+    private static PMConfig $config;
+
+    public static function init(string $filePath): void
     {
-        Config::init(Path::join([$this->getDataFolder(), "config.yml"]));
+        self::$config = new PMConfig($filePath);
     }
 
-    protected function onDisable(): void
+    public static function save(): void
     {
-        Config::save();
+        self::$config->save();
     }
 }
