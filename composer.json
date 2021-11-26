@@ -1,0 +1,7 @@
+{
+    "name": "pjz9n/item-timer",
+    "require-dev": {
+        "pocketmine/pocketmine-mp": "^4.0.0-BETA"
+    },
+    "require": {}
+}
