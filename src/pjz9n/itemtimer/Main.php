@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pjz9n\itemtimer;
 
 use pjz9n\itemtimer\config\Config;
+use pjz9n\itemtimer\task\TimerShowTask;
 use pocketmine\plugin\PluginBase;
 use Webmozart\PathUtil\Path;
 
@@ -32,6 +33,8 @@ class Main extends PluginBase
     protected function onEnable(): void
     {
         Config::init(Path::join([$this->getDataFolder(), "config.yml"]));
+
+        $this->getScheduler()->scheduleRepeatingTask(new TimerShowTask(), 20/*1sec*/);
     }
 
     protected function onDisable(): void

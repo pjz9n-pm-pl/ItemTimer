@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace pjz9n\itemtimer\config;
 
 use pocketmine\utils\Config as PMConfig;
+use pocketmine\utils\TextFormat;
 
 class Config
 {
@@ -31,11 +32,30 @@ class Config
 
     public static function init(string $filePath): void
     {
-        self::$config = new PMConfig($filePath);
+        self::$config = new PMConfig($filePath, default: [
+            "distance" => 10,
+            "show-tick" => 20 * 60 * 5,
+            "text" => TextFormat::GRAY . "{time}",
+        ]);
     }
 
     public static function save(): void
     {
         self::$config->save();
+    }
+
+    public static function getDistance(): int
+    {
+        return (int)self::$config->get("distance");
+    }
+
+    public static function getShowTick(): int
+    {
+        return (int)self::$config->get("show-tick");
+    }
+
+    public static function getText(): string
+    {
+        return (string)self::$config->get("text");
     }
 }
